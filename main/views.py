@@ -4,6 +4,7 @@ import firebase_admin
 from django.http import HttpResponse
 from firebase_admin import auth
 
+
 """def handle_password_reset(request, oob_code):
     try:
         # Verify the oob_code (out-of-band code)
@@ -60,11 +61,11 @@ def handle_password_reset(request):
 	        messages.error(request, "Passwords do not match.")
         # Password reset is successful
 	        
-    except auth.ExpiredOobCodeError:
+    except auth.ExpiredIdTokenError:
         # Oob code is expired
         messages.error(request, "Passwords Reset Link expired. Please .")
         #return render(request, 'password_reset_expired.html')
-    except auth.OobCodeInvalidError:
+    except auth.InvalidIdTokenError:
         # Oob code is invalid
         messages.error(request, "Invalid Link.")
         #return render(request, 'password_reset_invalid.html')
