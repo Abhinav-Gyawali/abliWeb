@@ -35,7 +35,7 @@ def home(request):
 	return HttpResponse("home")
 
 
-def handle_reset_verify(request):
+def handle_password_reset(request):
     # Get the oobCode and apiKey from the URL
     oob_code = request.GET.get('oobCode')
     api_key = request.GET.get('apiKey')
