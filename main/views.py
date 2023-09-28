@@ -67,3 +67,5 @@ def handle_password_reset(request):
         # Oob code is invalid
         messages.error(request, "Invalid Link.")
         #return render(request, 'password_reset_invalid.html')
+        
+    return render(request, 'password_reset_abli_app.html')
