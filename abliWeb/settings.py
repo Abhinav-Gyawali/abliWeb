@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vxv*6a_-%jz^b8-@^tjz=(1cktcf)rw)e(#u$!0@_ao((*xzlb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app','.now.sh','.abhinav-gyawali.com.np']
 
 
 # Application definition
@@ -111,5 +111,4 @@ FIREBASE_CONFIG = {
 }
 
 firebase_admin.initialize_app(options=FIREBASE_CONFIG)
-
 
