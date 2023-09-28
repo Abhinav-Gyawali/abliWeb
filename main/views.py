@@ -40,12 +40,7 @@ def handle_password_reset(request):
     oob_code = request.GET.get('oobCode')
     api_key = request.GET.get('apiKey')
 
-    # Initialize Firebase Admin SDK
-    firebase_admin.initialize_app(options={
-        "apiKey": api_key,
-    })
-
-    # Verify the password reset action
+    
     try:
         # Use Firebase Auth to reset the user's password
         auth.confirm_oob_code(oob_code)
