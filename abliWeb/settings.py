@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vxv*6a_-%jz^b8-@^tjz=(1cktcf)rw)e(#u$!0@_ao((*xzlb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -103,3 +103,13 @@ import os
 
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
+
+
+FIREBASE_CONFIG = {
+    "apiKey": "AIzaSyANYrXESiY-oJp2IXd6lRxsMuy23-m-_9E",
+    # Add other Firebase config options as needed
+}
+
+firebase_admin.initialize_app(options=FIREBASE_CONFIG)
+
+
