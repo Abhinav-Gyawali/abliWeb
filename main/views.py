@@ -44,7 +44,6 @@ def handle_password_reset(request):
     
     try:
         # Use Firebase Auth to reset the user's password
-        auth.confirm_oob_code(oob_code)
         
         if request.method == "POST":
 	        new_password = request.POST.get("new_password")
@@ -54,8 +53,7 @@ def handle_password_reset(request):
         # Change the user's password
 	        auth.update_user(oob_code, password=new_password)
         
-	        messages.success(
-	        request, "Password has been reset successfully."
+	        messages.success(request, "Password has been reset successfully."
 	        )
         else:
 	        messages.error(request, "Passwords do not match.")
