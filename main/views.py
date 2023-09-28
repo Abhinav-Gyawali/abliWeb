@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 import firebase_admin
-from django.http import HtppResponse
+from django.http import HttpResponse
 from firebase_admin import auth
 
 """def handle_password_reset(request, oob_code):
