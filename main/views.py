@@ -49,14 +49,14 @@ def handle_password_reset(request):
 	        new_password = request.POST.get("new_password")
 	        confirm_password = request.POST.get("confirm_password")
         
-        if new_password == confirm_password:
-        # Change the user's password
-	        auth.update_user(oob_code, password=new_password)
-        
-	        messages.success(request, "Password has been reset successfully."
-	        )
-        else:
-	        messages.error(request, "Passwords do not match.")
+	        if new_password == confirm_password:
+	        # Change the user's password
+		        auth.update_user(oob_code, password=new_password)
+	        
+		        messages.success(request, "Password has been reset successfully."
+		        )
+	        else:
+		        messages.error(request, "Passwords do not match.")
         # Password reset is successful
 	        
     except auth.ExpiredIdTokenError:
