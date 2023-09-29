@@ -44,5 +44,5 @@ def is_oob_code_valid(oob_code):
         # If verification is successful, the code is valid.
         return True
     except Exception as e:
-        message.error(f"Firebase Authentication Error ..... {e}")
+        messages.error(f"Firebase Authentication Error ..... {e}")
         return False
