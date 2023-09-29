@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import firebase_admin
 from django.http import HttpResponse
-from firebase_admin import auth,credentials
+from firebase_admin import auth, credentials
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
@@ -27,9 +27,10 @@ def handle_password_reset(request):
 
                 messages.success(request, "Password has been reset successfully.")
             else:
-	            valid, message = is_oob_code_valid(oob_code)
-	            if not valid:
-		            messages.error(request,message)
+                valid, message = is_oob_code_valid(oob_code)
+                if not valid:
+                    messages.error(request, message)
+
                 messages.error(request, "Passwords do not match.")
         except auth.ExpiredIdTokenError:
             messages.error(request, "Password Reset Link expired. Please .")
@@ -47,5 +48,5 @@ def is_oob_code_valid(oob_code):
         # If verification is successful, the code is valid.
         return True
     except Exception as e:
-        message= (f"Firebase Authentication Error ..... {e}")
-        return False,message
+        message = (f"Firebase Authentication Error ..... {e}")
+        return False, message
