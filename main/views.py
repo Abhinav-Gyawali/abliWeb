@@ -43,6 +43,6 @@ def is_oob_code_valid(oob_code):
         auth.verify_password_reset_code(oob_code)
         # If verification is successful, the code is valid.
         return True
-    except auth.AuthError as e:
-        print(f"Firebase Authentication Error: {e}")
+    except:
+        print(f"Firebase Authentication Error")
         return False
