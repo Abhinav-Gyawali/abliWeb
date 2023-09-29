@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import firebase_admin
 from django.http import HttpResponse
-from firebase_admin import auth
+from firebase_admin import auth,credentials
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
