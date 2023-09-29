@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import firebase_admin
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -110,5 +109,4 @@ FIREBASE_CONFIG = {
     # Add other Firebase config options as needed
 }
 
-firebase_admin.initialize_app(options=FIREBASE_CONFIG)
 

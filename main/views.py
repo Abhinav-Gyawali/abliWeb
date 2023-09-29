@@ -5,6 +5,11 @@ from django.http import HttpResponse
 from firebase_admin import auth
 
 
+cred = credentials.Certificate("serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
+
+
+
 """def handle_password_reset(request, oob_code):
     try:
         # Verify the oob_code (out-of-band code)
@@ -42,14 +47,15 @@ def handle_password_reset(request):
     api_key = request.GET.get('apiKey')
 
     
-    try:
+    if request.method == "POST":
+    
         # Use Firebase Auth to reset the user's password
         
-        if request.method == "POST":
+        try:
 	        new_password = request.POST.get("new_password")
 	        confirm_password = request.POST.get("confirm_password")
         
-	        if new_password == confirm_password:
+	        if new_password == confirm_password and is_oob_code_valid(oob_code):
 	        # Change the user's password
 		        auth.update_user(oob_code, password=new_password)
 	        
@@ -59,13 +65,26 @@ def handle_password_reset(request):
 		        messages.error(request, "Passwords do not match.")
         # Password reset is successful
 	        
-    except auth.ExpiredIdTokenError:
-        # Oob code is expired
-        messages.error(request, "Passwords Reset Link expired. Please .")
-        #return render(request, 'password_reset_expired.html')
-    except auth.InvalidIdTokenError:
-        # Oob code is invalid
-        messages.error(request, "Invalid Link.")
-        #return render(request, 'password_reset_invalid.html')
+	    except auth.ExpiredIdTokenError:
+	        # Oob code is expired
+	        messages.error(request, "Passwords Reset Link expired. Please .")
+	        #return render(request, 'password_reset_expired.html')
+	    except auth.InvalidIdTokenError:
+	        # Oob code is invalid
+	        messages.error(request, "Invalid Link.")
+	        #return render(request, 'password_reset_invalid.html')
         
     return render(request, 'password_reset_abli_app.html')
+    
+    
+def is_oob_code_valid(oob_code):
+    try:
+        # Use Firebase Admin SDK to verify the OOB code.
+        auth.verify_password_reset_code(oob_code)
+        # If verification is successful, the code is valid.
+        return True
+    except auth.AuthError as e:
+        # Handle any Firebase Authentication errors here.
+        # If the code is invalid, an AuthError will be raised.
+        print(f"Firebase Authentication Error: {e}")
+        return False
